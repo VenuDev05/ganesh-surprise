@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 function CountdownBadge() {
   const today = new Date();
-  const bday  = new Date(today.getFullYear(), 5, 2); // June 2 (month is 0-indexed)
   const isToday = today.getMonth() === 5 && today.getDate() === 2;
-  const target  = isToday ? bday : (today > bday ? new Date(today.getFullYear() + 1, 5, 2) : bday);
-  const diff    = Math.ceil((target - today) / (1000 * 60 * 60 * 24));
 
   return (
     <div className="anim-fade-slide-down" style={{
@@ -33,12 +30,7 @@ function CountdownBadge() {
 }
 
 export default function HeroSection() {
-  const [visible, setVisible] = useState(false);
 
-  useEffect(() => {
-    const t = setTimeout(() => setVisible(true), 200);
-    return () => clearTimeout(t);
-  }, []);
 
   const scrollDown = () =>
     document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' });
